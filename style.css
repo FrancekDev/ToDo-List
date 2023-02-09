@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  font-family: "Ubuntu";
+}
+
+.title {
+  color: blue;
+  text-align: center;
+  margin: 20px;
+}
+
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+.todo__form {
+}
+
+.todo__imput {
+  width: 100%;
+  line-height: 32px;
+  margin-bottom: 32px;
+}
+
+.todo__tasks {
+  display: flex;
+  text-align: center;
+  height: 64px;
+  border-bottom: 1px solid rgb(141, 141, 141);
+}
