@@ -36,11 +36,14 @@ body {
   width: 100%;
   line-height: 32px;
   margin-bottom: 32px;
+  padding: 0 12px;
+  font-size: 22px;
 }
 
-.todo__tasks {
+.todo__task {
   display: flex;
-  text-align: center;
-  height: 64px;
+  margin: 10px;
+  height: 32px;
   border-bottom: 1px solid rgb(141, 141, 141);
+  width: 100%;
 }
