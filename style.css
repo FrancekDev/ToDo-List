@@ -9,21 +9,19 @@
 body {
   display: flex;
   justify-content: center;
-  margin-top: 200px;
+  align-items: center;
+  margin-top: 50px;
   font-family: "Ubuntu";
 }
 
 .title {
-  color: blue;
+  color: rgb(110, 110, 199);
   text-align: center;
   margin: 20px;
 }
 
 .todo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin: auto;
   padding: 32px;
   border-radius: 16px;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
@@ -32,18 +30,54 @@ body {
 .todo__form {
 }
 
-.todo__imput {
+.todo__input {
   width: 100%;
   line-height: 32px;
   margin-bottom: 32px;
-  padding: 0 12px;
-  font-size: 22px;
+  padding: 0 16px;
+  font-size: 18px;
+  border-radius: 50px;
+  border: 1px rgb(110, 110, 199) solid;
+}
+
+.todo__input:focus {
+  outline: 1px rgb(110, 110, 199) solid;
+  border-radius: 50px;
 }
 
 .todo__task {
   display: flex;
-  margin: 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
   height: 32px;
   border-bottom: 1px solid rgb(141, 141, 141);
   width: 100%;
+}
+
+.todo__task-delete {
+  text-decoration: none;
+  color: #bb1c1c;
+  padding: 6px 0;
+  font-weight: bolder;
+  transition: 0.3s ease-in-out;
+}
+
+.todo__task-delete:focus {
+  background-color: #b86868;
+  transition: 0.3s;
+}
+
+.todo__defualt {
+  text-align: center;
+}
+
+.todo__error-message {
+  display: none;
+  text-align: center;
+  background-color: #eb22222f;
+  color: #bb1c1c;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  padding: 16px;
 }
