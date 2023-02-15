@@ -4,31 +4,53 @@ const todoTasksList = document.querySelector(".todo__tasks");
 const errorMessageEl = document.querySelector(".todo__error-message");
 const defualtMessage = document.querySelector(".todo__defualt");
 
-const tasks = [];
+// posprema u loacal storage
+const tasks =
+  localStorage.getItem("tasks") === null
+    ? []
+    : JSON.parse(localStorage.getItem("tasks"));
+
+if (localStorage.getItem("tasks") !== null) {
+  renderToDoTasks(tasks);
+}
 
 // event handler functions sprema event kao objekt
 
-inputEl.addEventListener("keydown", (event) => {
+inputEl.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
-    event.preventDefault();
-
-    const task = inputEl.value;
-
-    if (tasks.indexOf(task) === 0) {
-      defualtMessage.style.display = "none";
-    } // ne radi, pokušaj vidjet šta je, zbrejkalo se nakon dodavanja delete buttona
-
-    if (tasks.indexOf(task) === -1) {
-      errorMessageEl.style.display = "none";
-      tasks.push(task);
-      inputEl.value = "";
-
-      renderToDoTasks(tasks);
-    } else {
-      errorMessageEl.style.display = "block";
-    }
+    handleTaskSubmit(event);
   }
 });
+
+inputEl.addEventListener("click", function (event) {
+  if (inputEl.value === "") {
+    return;
+  }
+  handleTaskSubmit(event);
+});
+
+function handleTaskSubmit(event) {
+  event.preventDefault();
+
+  const task = inputEl.value;
+
+  if (tasks !== 0) {
+    defualtMessage.style.display = "none";
+  } else {
+    defualtMessage.style.display = "block";
+  }
+
+  if (tasks.indexOf(task) === -1) {
+    errorMessageEl.style.display = "none";
+    tasks.push(task);
+    inputEl.value = ""; // briše input nakon dodavanja
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderToDoTasks(tasks);
+  } else {
+    errorMessageEl.style.display = "block";
+  }
+}
 
 function renderToDoTasks(tasks) {
   todoTasksList.innerHTML = ""; //briše nam sve elemente array-a te ih opet ubacuje sve
@@ -47,7 +69,9 @@ function renderToDoTasks(tasks) {
     deleteEl.addEventListener("click", (event) => {
       //   let currentText = event.target.previousSibling.innerText;
       //   currentText = currentText.substring(currentText.indexOf(" ") + 1);
+      // setTimeout((deleteEl.style.backgroundColor = "#b86868"), 1000);
       tasks.splice(tasks.indexOf(task), 1);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
       renderToDoTasks(tasks);
     });
 
